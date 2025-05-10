@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class AIService {
 
-    private static final String OPENAI_API_KEY = "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";
+    private static final String OPENAI_API_KEY = "your-openai-api-key-here";
 
     public static String generateImprovementSuggestion(String performanceSummary) {
         OkHttpClient client = new OkHttpClient();
