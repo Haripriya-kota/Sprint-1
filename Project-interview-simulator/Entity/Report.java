@@ -6,33 +6,31 @@ import jakarta.persistence.*;
 @Table(name = "report") // Maps this class to the "report" table in the database
 public class Report {
 
-    // Primary key with auto-increment
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Report_Id")
     private int id;
 
-    // Many-to-one relationship with InterviewSession
     @ManyToOne
-    @JoinColumn(name = "Session_Id") // Foreign key referencing InterviewSession
+    @JoinColumn(name = "Session_Id")
     private InterviewSession interviewSession;
 
-    // Many-to-one relationship with Response
     @ManyToOne
-    @JoinColumn(name = "Response_Id") // Foreign key referencing Response
+    @JoinColumn(name = "Response_Id")
     private Response response;
 
-    // Many-to-one relationship with Question
     @ManyToOne
-    @JoinColumn(name = "Q_Id") // Foreign key referencing Question
+    @JoinColumn(name = "Q_Id")
     private Question question;
 
-    // Many-to-one relationship with User
     @ManyToOne
-    @JoinColumn(name = "User_Id") // Foreign key referencing User
+    @JoinColumn(name = "User_Id")
     private User user;
 
-    // Field to store improvement suggestions for the user's response
+    @ManyToOne
+    @JoinColumn(name = "answer_id")
+    private Answer answer;
+
     @Column(name = "Improvement_Suggestions")
     private String improvementSuggestions;
 
@@ -76,6 +74,14 @@ public class Report {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Answer getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
     }
 
     public String getImprovementSuggestions() {

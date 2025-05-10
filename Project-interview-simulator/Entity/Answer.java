@@ -2,35 +2,38 @@ package com.InterviewSimulator.entity;
 
 import jakarta.persistence.*;
 
+@Entity
+@Table(name = "answer")
+public class Answer {
 
-	@Entity
-	@Table(name = "answer")
-	public class Answer {
-	    @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private int Answer_Id;
-	    
-	    @ManyToOne
-	    @JoinColumn(name = "Q_Id")
-	    private Question question;
-	    
-	    @Column(name = "Answer_Text")
-	    private String answerText;
-	    
-	    @Column(name = "Question_Text")
-	    private String questionText;
-	    
-	    // Getters and setters...
-	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Answer_Id")
+    private int answerId;
+
+    @ManyToOne
+    @JoinColumn(name = "Q_Id", referencedColumnName = "Q_Id")
+    private Question question;
+
+    @Column(name = "Answer_Text", nullable = false)
+    private String answerText;
+
+    @Column(name = "Question_Text", nullable = false, columnDefinition = "TEXT")
+    private String questionText;
+
+    // 🔧 Add the missing user field and mapping
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     // Getters and Setters
 
-
-    public String getAnswerText() {
-        return answerText;
+    public int getAnswerId() {
+        return answerId;
     }
 
-    public void setAnswerText(String answerText) {
-        this.answerText = answerText;
+    public void setAnswerId(int answerId) {
+        this.answerId = answerId;
     }
 
     public Question getQuestion() {
@@ -40,12 +43,28 @@ import jakarta.persistence.*;
     public void setQuestion(Question question) {
         this.question = question;
     }
+
+    public String getAnswerText() {
+        return answerText;
+    }
+
+    public void setAnswerText(String answerText) {
+        this.answerText = answerText;
+    }
+
     public String getQuestionText() {
         return questionText;
     }
 
     public void setQuestionText(String questionText) {
-        this.questionText = questionText;  // Set the question text here
+        this.questionText = questionText;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
-

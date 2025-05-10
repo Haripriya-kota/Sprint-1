@@ -25,6 +25,10 @@ public class Question {
     @JoinColumn(name = "Session_Id") // Foreign key to InterviewSession
     private InterviewSession interviewSession;
 
+    @ManyToOne
+    @JoinColumn(name = "User_Id") // Foreign key column referencing user
+    private User user;
+    
     // Default constructor (required by JPA)
     public Question() {}
 
@@ -55,6 +59,9 @@ public class Question {
     public String getCorrectAnswer() {
         return correctAnswer;
     }
+    
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 
     public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
