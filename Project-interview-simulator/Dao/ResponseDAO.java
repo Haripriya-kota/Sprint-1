@@ -29,10 +29,6 @@ public class ResponseDAO {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // Start a new transaction
             transaction = session.beginTransaction();
-
-            // Log the response before saving
-            System.out.println("✅ Saving response: " + response);
-
             // Use the modern query API: createQuery returns Query<Response> now
             String hql = "FROM Response WHERE user = :user AND question = :question";
             Query<Response> query = session.createQuery(hql, Response.class);
@@ -55,7 +51,6 @@ public class ResponseDAO {
 
             // Commit the transaction to save changes to the database
             transaction.commit();
-            System.out.println("✅ Response saved successfully: " + response);
 
             // Return the saved response
             return response;

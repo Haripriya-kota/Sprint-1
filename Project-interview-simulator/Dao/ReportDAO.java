@@ -47,8 +47,7 @@ public class ReportDAO {
             
             // Commit the transaction to save the changes to the database
             transaction.commit();
-            
-            System.out.println("✅ Report saved successfully.");
+ 
         } catch (Exception e) {
             // If an error occurs, rollback the transaction to ensure database consistency
             if (transaction != null) {

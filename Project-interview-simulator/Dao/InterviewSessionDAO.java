@@ -27,9 +27,6 @@ public class InterviewSessionDAO {
             // Start a transaction
             transaction = sessionObj.beginTransaction();
 
-            // Log the ID of the session before saving
-            System.out.println("🔍 Before saving, Session ID: " + session.getId());
-
             // Persist the InterviewSession object into the database
             sessionObj.persist(session);
 
